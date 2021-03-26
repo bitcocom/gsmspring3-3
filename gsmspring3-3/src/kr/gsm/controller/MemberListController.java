@@ -32,6 +32,7 @@ public class MemberListController extends HttpServlet {
 		out.println("<td>나이</td>");
 		out.println("<td>전화번호</td>");
 		out.println("<td>이메일</td>");
+		out.println("<td>삭제</td>");
 		out.println("</tr>");
 		for(MemberVO vo : list) {
 			out.println("<tr>");
@@ -42,10 +43,11 @@ public class MemberListController extends HttpServlet {
 			out.println("<td>"+vo.getAge()+"</td>");
 			out.println("<td>"+vo.getPhone()+"</td>");
 			out.println("<td>"+vo.getEmail()+"</td>");
+			out.println("<td><a href='/m3/memberDelete.do?num="+vo.getNum()+"'>삭제</a></td>");
 			out.println("</tr>");
 		}
 		out.println("<tr>");
-		out.println("<td colspan='7' align='right'>");
+		out.println("<td colspan='8' align='right'>");
 		out.println("<a href='member/memberRegister.html'>회원가입</a>");
 		out.println("</td>");
 		out.println("</tr>");
