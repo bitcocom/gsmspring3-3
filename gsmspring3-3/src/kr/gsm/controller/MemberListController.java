@@ -44,9 +44,13 @@ public class MemberListController extends HttpServlet {
 			out.println("<td>"+vo.getEmail()+"</td>");
 			out.println("</tr>");
 		}
+		out.println("<tr>");
+		out.println("<td colspan='7' align='right'>");
+		out.println("<a href='member/memberRegister.html'>회원가입</a>");
+		out.println("</td>");
+		out.println("</tr>");
 		out.println("</table>");
 		out.println("</body>");
-		out.println("</html>");
-		
+		out.println("</html>");		
 	}
 }
