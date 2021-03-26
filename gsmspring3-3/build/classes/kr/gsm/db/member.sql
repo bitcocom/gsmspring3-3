@@ -13,4 +13,7 @@ create table member(
 insert into member(id,pass,name,age,phone,email) 
 values('admin','admin','관리자',30,'010-1111-1111','admin@naver.com');
 
+insert into member(id,pass,name,age,phone,email) 
+values('bitcocom','bitcocom','박매일',30,'010-1111-1111','admin@naver.com');
+
 select * from member;
