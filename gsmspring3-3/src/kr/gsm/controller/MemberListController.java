@@ -17,8 +17,36 @@ public class MemberListController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberDAO dao=new MemberDAO();
 		List<MemberVO> list=dao.memberList();
+		
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		out.println(list.toString());
+		// 응답코드를 작성(HTML)->JSP
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<table border='1'>");
+		out.println("<tr>");
+		out.println("<td>번호</td>");
+		out.println("<td>아이디</td>");
+		out.println("<td>비밀번호</td>");
+		out.println("<td>이름</td>");
+		out.println("<td>나이</td>");
+		out.println("<td>전화번호</td>");
+		out.println("<td>이메일</td>");
+		out.println("</tr>");
+		for(MemberVO vo : list) {
+			out.println("<tr>");
+			out.println("<td>"+vo.getNum()+"</td>");
+			out.println("<td>"+vo.getId()+"</td>");
+			out.println("<td>"+vo.getPass()+"</td>");
+			out.println("<td>"+vo.getName()+"</td>");
+			out.println("<td>"+vo.getAge()+"</td>");
+			out.println("<td>"+vo.getPhone()+"</td>");
+			out.println("<td>"+vo.getEmail()+"</td>");
+			out.println("</tr>");
+		}
+		out.println("</table>");
+		out.println("</body>");
+		out.println("</html>");
 		
 	}
 }
