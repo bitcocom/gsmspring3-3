@@ -14,6 +14,12 @@ public class MemberDeleteController extends HttpServlet {
 		// 파라메터수집
 		int num=Integer.parseInt(request.getParameter("num"));
 		MemberDAO dao=new MemberDAO();
-		
+		int cnt=dao.memberDelete(num);
+	    if(cnt>0) {
+	    	//다시-->리스트보기(memberList.do)
+	    	response.sendRedirect("/m3/memberList.do");
+	    }else {
+	    	throw new ServletException("error");
+	    }
 	}
 }
