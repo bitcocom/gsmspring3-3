@@ -16,7 +16,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table class="table">
+<table class="table table-bordered table-hover">
 <tr>
   <td>번호</td>
   <td>아이디</td>
@@ -26,7 +26,17 @@
   <td>전화번호</td>
   <td>이메일</td>
 </tr>
-
+<% for( MemberVO vo : list)  { %>
+<tr>
+  <td><%=vo.getNum()%></td>
+  <td><%=vo.getId()%></td>
+  <td><%=vo.getPass()%></td>
+  <td><%=vo.getName()%></td>
+  <td><%=vo.getAge()%></td>
+  <td><%=vo.getPhone()%></td>
+  <td><%=vo.getEmail()%></td>
+</tr>
+<% } %>
 </table>
 </body>
 </html>
