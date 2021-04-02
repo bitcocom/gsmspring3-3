@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,42 +18,10 @@ public class MemberListController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberDAO dao=new MemberDAO();
 		List<MemberVO> list=dao.memberList();
-		
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
-		// 응답코드를 작성(HTML)->JSP
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<table border='1'>");
-		out.println("<tr>");
-		out.println("<td>번호</td>");
-		out.println("<td>아이디</td>");
-		out.println("<td>비밀번호</td>");
-		out.println("<td>이름</td>");
-		out.println("<td>나이</td>");
-		out.println("<td>전화번호</td>");
-		out.println("<td>이메일</td>");
-		out.println("<td>삭제</td>");
-		out.println("</tr>");
-		for(MemberVO vo : list) {
-			out.println("<tr>");
-			out.println("<td>"+vo.getNum()+"</td>");
-			out.println("<td>"+vo.getId()+"</td>");
-			out.println("<td>"+vo.getPass()+"</td>");
-			out.println("<td>"+vo.getName()+"</td>");
-			out.println("<td>"+vo.getAge()+"</td>");
-			out.println("<td>"+vo.getPhone()+"</td>");
-			out.println("<td>"+vo.getEmail()+"</td>");
-			out.println("<td><a href='/m3/memberDelete.do?num="+vo.getNum()+"'>삭제</a></td>");
-			out.println("</tr>");
-		}
-		out.println("<tr>");
-		out.println("<td colspan='8' align='right'>");
-		out.println("<a href='member/memberRegister.html'>회원가입</a>");
-		out.println("</td>");
-		out.println("</tr>");
-		out.println("</table>");
-		out.println("</body>");
-		out.println("</html>");		
+		// 객체바인딩
+		request.setAttribute("list", list);
+		// jsp로 forward(포워딩=요청의뢰) : memberList.jsp
+		RequestDispatcher rd=request.getRequestDispatcher("member/memberList.jsp");
+		rd.forward(request, response);	
 	}
 }
